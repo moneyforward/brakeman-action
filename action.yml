@@ -1,0 +1,10 @@
+---
+name: Code review using Brakeman
+author: Money Forward, Inc.
+description: Analyze code statically using Brakeman in Github actions
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'search'
+  color: 'orange'
