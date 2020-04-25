@@ -2,6 +2,17 @@
 name: Code review using Brakeman
 author: Money Forward, Inc.
 description: Analyze code statically using Brakeman in Github actions
+inputs:
+  options:
+    description: |
+      Changes `brakeman` command line options.
+
+      Specify the options in JSON array format.
+      e.g.: '["-A", "--skip-libs"]'
+    required: false
+  working_directory:
+    description: Changes the current working directory of the Node.js process
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
