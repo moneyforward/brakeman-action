@@ -2,6 +2,19 @@
 
 Analyze code statically by using Brakeman in Github actions
 
+## Inputs
+
+### `options`
+
+Changes `brakeman` command line options.
+
+Specify the options in JSON array format.
+e.g.: `'["-A", "--skip-libs"]'`
+
+### `working_directory`
+
+Changes the current working directory of the Node.js process
+
 ## Example usage
 
 ```yaml
