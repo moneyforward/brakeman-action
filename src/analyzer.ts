@@ -17,7 +17,7 @@ export function createTransformStreams(): [stream.Transform, stream.Transform] {
         line: warning.line,
         column: 0,
         severity: 'warning',
-        message: `[${warning.confidence}] ${warning.message}`,
+        message: `[${warning.confidence}] ${warning.warning_type}: ${warning.message}`,
         code: warning.check_name
       });
       this.push(null);

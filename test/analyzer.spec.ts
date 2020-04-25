@@ -28,7 +28,7 @@ describe('Transform', () => {
         line: 5,
         column: 0,
         severity: 'warning',
-        message: '[Medium] Use of unsafe cookie serialization strategy `:marshal` might lead to remote code execution',
+        message: '[Medium] Remote Code Execution: Use of unsafe cookie serialization strategy `:marshal` might lead to remote code execution',
         code: 'CookieSerialization'
       });
   });
