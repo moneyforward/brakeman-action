@@ -1,6 +1,6 @@
 {
   "name": "brakeman-action",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Analyze code statically using Brakeman in Github actions",
   "main": "dist/index.js",
   "scripts": {
