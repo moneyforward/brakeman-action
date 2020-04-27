@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import stream from 'stream';
-import { createTransformStreams } from '../src/analyzer'
+import { Transformers } from '@moneyforward/sca-action-core';
+import Analyzer from '../src/analyzer'
 
 describe('Transform', () => {
   it('should return the problem object', async () => {
@@ -20,7 +21,15 @@ describe('Transform', () => {
       "confidence": "Medium"
     };
     const text = JSON.stringify({ "warnings": [warning] });
-    const [prev, next] = createTransformStreams();
+    const analyzer =  new (class extends Analyzer {
+      public constructor() {
+        super();
+      }
+      public createTransformStreams(): Transformers {
+        return super.createTransformStreams();
+      }
+    })();
+    const [prev, next = prev] = analyzer.createTransformStreams();
     stream.Readable.from(text).pipe(prev);
     for await (const problem of next)
       expect(problem).to.deep.equal({

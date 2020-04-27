@@ -1,8 +1,7 @@
-/// <reference types="node" />
-import stream from 'stream';
-export declare function createTransformStreams(): [stream.Transform, stream.Transform];
-export default class Analyzer {
-    private options;
+import { StaticCodeAnalyzer, Transformers } from '@moneyforward/sca-action-core';
+export default class Analyzer extends StaticCodeAnalyzer {
+    private static readonly command;
     constructor(options?: string[]);
-    analyze(): Promise<number>;
+    protected prepare(): Promise<unknown>;
+    protected createTransformStreams(): Transformers;
 }

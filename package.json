@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/moneyforward/brakeman-action#readme",
   "dependencies": {
-    "@moneyforward/sca-action-core": "0.0.5"
+    "@moneyforward/sca-action-core": "0.0.6"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
