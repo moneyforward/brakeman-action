@@ -17,6 +17,7 @@
     "actions",
     "brakeman"
   ],
+  "private": true,
   "author": "Money Forward, Inc.",
   "license": "MIT",
   "bugs": {
