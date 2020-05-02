@@ -3,6 +3,10 @@ name: Code review using Brakeman
 author: Money Forward, Inc.
 description: Analyze code statically using Brakeman in Github actions
 inputs:
+  files:
+    description: |
+      Changes the path to a Rails application
+    required: false
   options:
     description: |
       Changes `brakeman` command line options.

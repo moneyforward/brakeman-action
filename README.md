@@ -4,6 +4,10 @@ Analyze code statically by using Brakeman in Github actions
 
 ## Inputs
 
+### `files`
+
+Changes the path to a Rails application
+
 ### `options`
 
 Changes `brakeman` command line options.
