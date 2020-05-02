@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import stream from 'stream';
 import { Transformers } from '@moneyforward/sca-action-core';
-import Analyzer from '../src/analyzer'
+import Analyzer, { Warning } from '../src/analyzer'
 
 describe('Transform', () => {
   it('should return the problem object', async () => {
-    const warning = {
+    const warning: Warning = {
       "warning_type": "Remote Code Execution",
       "warning_code": 110,
       "fingerprint": "d882f63ce96c28fb6c6e0982f2a171460e4b933bfd9b9a5421dca21eef3f76da",
@@ -21,7 +21,7 @@ describe('Transform', () => {
       "confidence": "Medium"
     };
     const text = JSON.stringify({ "warnings": [warning] });
-    const analyzer =  new (class extends Analyzer {
+    const analyzer = new (class extends Analyzer {
       public constructor() {
         super();
       }
