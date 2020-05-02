@@ -6,6 +6,7 @@
   "scripts": {
     "test": "gulp test",
     "version": "gulp clean build && git add dist",
+    "postversion": "gulp postversion",
     "start": "gulp build && node dist/index.js"
   },
   "repository": {
