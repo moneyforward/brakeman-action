@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import stream from 'stream';
-import { Transformers } from '@moneyforward/sca-action-core';
+import util from 'util'
 import Analyzer, { Warning } from '../src/analyzer'
 
 describe('Transform', () => {
@@ -25,13 +25,13 @@ describe('Transform', () => {
       public constructor() {
         super();
       }
-      public createTransformStreams(): Transformers {
+      public createTransformStreams(): stream.Transform[] {
         return super.createTransformStreams();
       }
     })();
-    const [prev, next = prev] = analyzer.createTransformStreams();
-    stream.Readable.from(text).pipe(prev);
-    for await (const problem of next)
+    const streams = [stream.Readable.from(text), ...analyzer.createTransformStreams()];
+    await util.promisify(stream.pipeline)(streams);
+    for await (const problem of streams[streams.length - 1])
       expect(problem).to.deep.equal({
         file: 'config/initializers/cookies_serializer.rb',
         line: 5,

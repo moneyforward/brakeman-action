@@ -62,6 +62,6 @@ export default class Analyzer extends StaticCodeAnalyzer {
     private static readonly command;
     constructor(options?: string[]);
     protected prepare(): Promise<void>;
-    protected createTransformStreams: () => stream.Transform[];
+    protected createTransformStreams(): stream.Transform[];
 }
 export {};

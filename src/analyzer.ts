@@ -83,23 +83,25 @@ export default class Analyzer extends StaticCodeAnalyzer {
     }
   }
 
-  protected createTransformStreams = (): stream.Transform[] => [
-    new JSONTransform(),
-    new stream.Transform({
-      readableObjectMode: true,
-      transform: function (result: Result, encoding, done): void {
-        console.log(`::debug::Detected ${result.warnings.length} problem(s).`);
-        for (const warning of result.warnings) this.push({
-          file: warning.file,
-          line: warning.line,
-          column: 0,
-          severity: 'warning',
-          message: `[${warning.confidence}] ${warning.warning_type}: ${warning.message}`,
-          code: warning.check_name
-        });
-        this.push(null);
-        done();
-      }
-    })
-  ];
+  protected createTransformStreams(): stream.Transform[] {
+    return [
+      new JSONTransform(),
+      new stream.Transform({
+        objectMode: true,
+        transform: function (result: Result, encoding, done): void {
+          console.log(`::debug::Detected ${result.warnings.length} problem(s).`);
+          for (const warning of result.warnings) this.push({
+            file: warning.file,
+            line: warning.line,
+            column: 0,
+            severity: 'warning',
+            message: `[${warning.confidence}] ${warning.warning_type}: ${warning.message}`,
+            code: warning.check_name
+          });
+          this.push(null);
+          done();
+        }
+      })
+    ]
+  }
 }
