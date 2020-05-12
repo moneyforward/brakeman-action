@@ -1,5 +1,6 @@
 import stream from 'stream';
-import { StaticCodeAnalyzer, Transformers, tool } from '@moneyforward/sca-action-core';
+import StaticCodeAnalyzer, { installer } from '@moneyforward/sca-action-core';
+import { JSON as JSONTransform } from '@moneyforward/stream-util'
 
 interface ScanInfo {
   app_path: string;
@@ -73,20 +74,20 @@ export default class Analyzer extends StaticCodeAnalyzer {
     super(Analyzer.command, options.concat(['--no-progress', '--no-exit-on-warn', '-f', 'json']), undefined, 2);
   }
 
-  protected prepare(): Promise<unknown> {
-    return tool.installGem(true, Analyzer.command);
+  protected async prepare(): Promise<void> {
+    console.log(`::group::Installing gems...`);
+    try {
+      new installer.RubyGemsInstaller(true).execute(Analyzer.command);
+    } finally {
+      console.log(`::endgroup::`)
+    }
   }
 
-  protected createTransformStreams(): Transformers {
-    const buffers: Buffer[] = [];
-    const transformer = new stream.Transform({
+  protected createTransformStreams = (): stream.Transform[] => [
+    new JSONTransform(),
+    new stream.Transform({
       readableObjectMode: true,
-      transform: function (buffer, _encoding, done): void {
-        buffers.push(buffer);
-        done();
-      },
-      flush: function (done): void {
-        const result: Result = JSON.parse(Buffer.concat(buffers).toString());
+      transform: function (result: Result, encoding, done): void {
         console.log(`::debug::Detected ${result.warnings.length} problem(s).`);
         for (const warning of result.warnings) this.push({
           file: warning.file,
@@ -99,7 +100,6 @@ export default class Analyzer extends StaticCodeAnalyzer {
         this.push(null);
         done();
       }
-    });
-    return [transformer, transformer];
-  }
+    })
+  ];
 }

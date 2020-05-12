@@ -19,6 +19,12 @@ e.g.: `'["-A", "--skip-libs"]'`
 
 Changes the current working directory of the Node.js process
 
+### `reporter_type_notation`
+
+Change the reporter.
+
+(Multiple can be specified separated by commas)
+
 ## Example usage
 
 ```yaml
