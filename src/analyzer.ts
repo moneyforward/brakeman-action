@@ -77,7 +77,7 @@ export default class Analyzer extends StaticCodeAnalyzer {
   protected async prepare(): Promise<void> {
     console.log(`::group::Installing gems...`);
     try {
-      new installer.RubyGemsInstaller(true).execute(Analyzer.command);
+      await new installer.RubyGemsInstaller(true).execute([Analyzer.command]);
     } finally {
       console.log(`::endgroup::`)
     }
