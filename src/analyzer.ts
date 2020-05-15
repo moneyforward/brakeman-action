@@ -1,6 +1,6 @@
 import stream from 'stream';
 import StaticCodeAnalyzer, { installer } from '@moneyforward/sca-action-core';
-import { JSON as JSONTransform } from '@moneyforward/stream-util'
+import { transform } from '@moneyforward/stream-util'
 
 interface ScanInfo {
   app_path: string;
@@ -85,7 +85,7 @@ export default class Analyzer extends StaticCodeAnalyzer {
 
   protected createTransformStreams(): stream.Transform[] {
     return [
-      new JSONTransform(),
+      new transform.JSON(),
       new stream.Transform({
         objectMode: true,
         transform: function (result: Result, encoding, done): void {
