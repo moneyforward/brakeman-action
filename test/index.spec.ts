@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import stream from 'stream';
 import util from 'util'
-import Analyzer, { Warning } from '../src/analyzer'
+import Analyzer, { Warning } from '../src'
 
 describe('Transform', () => {
   it('should return the problem object', async () => {

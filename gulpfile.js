@@ -10,8 +10,12 @@ exports.postversion = async function postversion () {
   await Command.execute('git', ['tag', '-f', latest.substring(0, 4), revision]);
 }
 
+exports['transpile:tsc'] = function tsc() {
+  return Command.execute('tsc');
+}
+
 exports['transpile:ncc'] = function ncc() {
-  return Command.execute('ncc', ['build', './src/index.ts', '-m']);
+  return Command.execute('ncc', ['build', './src/action.ts', '-o', 'dist/action', '-mt']);
 }
 
 exports['lint:eslint'] = function eslint() {
@@ -23,14 +27,14 @@ exports['test:mocha'] = function mocha() {
 }
 
 exports['watch:typescript'] = function watchTypeScript() {
-  const task = gulp.parallel(exports['transpile:ncc'], exports['lint:eslint']);
+  const task = gulp.parallel(exports['transpile:tsc'], exports['lint:eslint']);
   return gulp.watch('./src/**/*.ts{,x}', task);
 }
 
 exports.clean = function clean() {
   return del('dist');
 };
-exports.transpile = gulp.parallel(exports['transpile:ncc']);
+exports.transpile = gulp.parallel(exports['transpile:tsc'], exports['transpile:ncc']);
 exports.lint = gulp.parallel(exports['lint:eslint']);
 exports.build = gulp.parallel(exports.lint, exports.transpile);
 exports.test = gulp.series(exports['test:mocha']);

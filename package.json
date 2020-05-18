@@ -1,13 +1,17 @@
 {
-  "name": "brakeman-action",
+  "name": "@moneyforward/code-review-action-brakeman-plugin",
   "version": "0.0.13",
   "description": "Analyze code statically using Brakeman in Github actions",
-  "main": "dist/index.js",
+  "main": "dist/main/index.js",
   "scripts": {
     "test": "gulp test",
-    "version": "gulp clean build && git add dist",
+    "prepare": "gulp clean build",
+    "version": "gulp clean build && git add dist/action",
     "postversion": "gulp postversion",
-    "start": "gulp build && node dist/index.js"
+    "start": "node dist/action/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -18,7 +22,6 @@
     "actions",
     "brakeman"
   ],
-  "private": true,
   "author": "Money Forward, Inc.",
   "license": "MIT",
   "bugs": {
@@ -26,6 +29,7 @@
   },
   "homepage": "https://github.com/moneyforward/brakeman-action#readme",
   "dependencies": {
+    "@moneyforward/code-review-action": "0.0.3",
     "@moneyforward/sca-action-core": "^0.1.11",
     "@moneyforward/stream-util": "^0.1.0"
   },
