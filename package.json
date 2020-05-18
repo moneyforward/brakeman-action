@@ -30,6 +30,7 @@
     "@moneyforward/stream-util": "^0.1.0"
   },
   "devDependencies": {
+    "@moneyforward/command": "^0.1.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.13.6",
