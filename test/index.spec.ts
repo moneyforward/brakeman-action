@@ -1,7 +1,10 @@
 import { expect } from 'chai';
 import stream from 'stream';
 import util from 'util'
+import { reporter } from '@moneyforward/code-review-action'
 import Analyzer, { Warning } from '../src'
+
+type ReporterConstructor = reporter.ReporterConstructor;
 
 describe('Transform', () => {
   it('should return the problem object', async () => {
@@ -22,6 +25,9 @@ describe('Transform', () => {
     };
     const text = JSON.stringify({ "warnings": [warning] });
     const analyzer = new (class extends Analyzer {
+      get Reporter(): ReporterConstructor {
+        throw new Error("Method not implemented.");
+      }
       public constructor() {
         super();
       }
