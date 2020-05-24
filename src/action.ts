@@ -1,6 +1,5 @@
-import CodeReviewAction from '@moneyforward/code-review-action';
+import CodeReviewAction, { analyzer } from '@moneyforward/code-review-action';
 import Analyzer from '.';
-import { analyzer } from '@moneyforward/code-review-action';
 
 type AnalyzerConstructor = analyzer.AnalyzerConstructor
 
