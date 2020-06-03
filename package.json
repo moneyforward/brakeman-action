@@ -1,6 +1,6 @@
 {
   "name": "@moneyforward/code-review-action-brakeman-plugin",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Analyze code statically using Brakeman in Github actions",
   "main": "dist/main/index.js",
   "scripts": {
