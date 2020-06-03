@@ -30,16 +30,16 @@
   "homepage": "https://github.com/moneyforward/brakeman-action#readme",
   "dependencies": {
     "@moneyforward/code-review-action": "^0.2.0",
-    "@moneyforward/sca-action-core": "^0.2.1",
-    "@moneyforward/stream-util": "^0.1.1"
+    "@moneyforward/sca-action-core": "^0.2.3",
+    "@moneyforward/stream-util": "^0.1.4"
   },
   "devDependencies": {
-    "@moneyforward/command": "^0.1.0",
+    "@moneyforward/command": "^0.2.2",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.13.9",
-    "@typescript-eslint/eslint-plugin": "^3.0.2",
-    "@typescript-eslint/parser": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
     "@zeit/ncc": "^0.22.3",
     "chai": "^4.2.0",
     "del": "^5.1.0",
