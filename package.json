@@ -30,7 +30,7 @@
   "homepage": "https://github.com/moneyforward/brakeman-action#readme",
   "dependencies": {
     "@moneyforward/code-review-action": "^0.2.0",
-    "@moneyforward/sca-action-core": "^0.2.3",
+    "@moneyforward/sca-action-core": "^0.2.4",
     "@moneyforward/stream-util": "^0.1.4"
   },
   "devDependencies": {
